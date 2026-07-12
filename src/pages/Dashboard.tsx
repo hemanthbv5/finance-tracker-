@@ -8,6 +8,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
 import { useFinanceStore } from '../store/financeStore';
+import { useAuthStore } from '../store/authStore';
 import {
   formatCurrencyFull, formatCurrency, formatDate,
   getMonthlyIncome, getMonthlyExpense, getTotalIncome, getTotalExpense,
@@ -71,7 +72,7 @@ const Dashboard: React.FC = () => {
       }}>
         <div>
           <div style={{ fontSize: '22px', fontWeight: 800, fontFamily: 'Outfit, sans-serif', color: 'var(--text-primary)' }}>
-            Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 17 ? 'Afternoon' : 'Evening'}, {profile.name}! 👋
+            Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 17 ? 'Afternoon' : 'Evening'}, {useAuthStore(s => s.user?.name) || profile.name}! 👋
           </div>
           <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>
             Here's your financial overview for today.

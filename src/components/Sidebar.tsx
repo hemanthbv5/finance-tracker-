@@ -6,6 +6,7 @@ import {
   CreditCard, Receipt
 } from 'lucide-react';
 import { useFinanceStore } from '../store/financeStore';
+import { useAuthStore } from '../store/authStore';
 
 const navItems = [
   { section: 'Overview' },
@@ -82,14 +83,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
         <div className="sidebar-user">
           <div className="user-avatar">
-            {profile.name.charAt(0).toUpperCase()}
+            {(useAuthStore(s => s.user?.name) || profile.name).charAt(0).toUpperCase()}
           </div>
           <div className="user-info">
             <div className="user-name" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {profile.name}
+              {useAuthStore(s => s.user?.name) || profile.name}
             </div>
             <div className="user-role" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-              {profile.currency} · Personal
+              {useAuthStore(s => s.user?.currency) || profile.currency} · Personal
             </div>
           </div>
           <ChevronRight size={14} style={{ color: 'var(--text-muted)' }} />
