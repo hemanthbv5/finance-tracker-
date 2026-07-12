@@ -910,6 +910,11 @@ body {
 /* ===== DIVIDER ===== */
 .divider { height: 1px; background: var(--border-glass); margin: 16px 0; }
 
+.login-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -923,7 +928,14 @@ body {
   .main-content { margin-left: 0; }
   .grid-4, .grid-3, .grid-2, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
   .page-content { padding: 16px; }
+  
+  .login-grid { grid-template-columns: 1fr; }
+  .login-grid > div:first-child { display: none; } /* Hide branding panel on mobile */
+  
+  .mobile-menu-btn { display: flex !important; }
 }
+
+.mobile-menu-btn { display: none !important; }
 
 /* Light mode overrides for inputs */
 .light-mode .form-input,

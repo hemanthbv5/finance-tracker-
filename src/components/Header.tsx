@@ -47,9 +47,8 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, isDark, onToggleTheme,
   return (
     <header className="header">
       <button
-        className="header-btn md:hidden"
+        className="header-btn mobile-menu-btn"
         onClick={onToggleSidebar}
-        style={{ display: 'none' }}
         aria-label="Toggle sidebar"
       >
         <Menu size={18} />

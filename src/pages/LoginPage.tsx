@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
         pointerEvents: 'none',
       }} />
 
-      <div style={{ width: '100%', maxWidth: '900px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+      <div className="login-grid" style={{ width: '100%', maxWidth: '900px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
 
         {/* Left — Branding Panel */}
         <div style={{

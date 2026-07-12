@@ -210,7 +210,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Bottom Row: Recent Transactions + Goals + Insights */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+      <div className="grid-3">
 
         {/* Recent Transactions */}
         <div className="card" style={{ gridColumn: 'span 1' }}>
