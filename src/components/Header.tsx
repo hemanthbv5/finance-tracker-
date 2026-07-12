@@ -136,13 +136,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, isDark, onToggleTheme,
           )}
         </div>
 
-        <button
-          className="header-btn"
-          onClick={handleLogout}
-          title="Sign Out"
-        >
-          <LogOut size={18} color="var(--accent-red)" />
-        </button>
+        {/* Sign Out removed to bypass login entirely */}
       </div>
     </header>
   );

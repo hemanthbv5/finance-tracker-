@@ -30,8 +30,24 @@ const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
 };
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { token } = useAuthStore();
-  if (!token) return <Navigate to="/login" replace />;
+  const { token, login, register } = useAuthStore();
+  
+  useEffect(() => {
+    if (!token) {
+      // Automatically log in to skip the login screen
+      login('guest@fintrack.local', 'password123').catch(() => {
+        register('Hemanth', 'guest@fintrack.local', 'password123');
+      });
+    }
+  }, [token, login, register]);
+
+  if (!token) {
+    return (
+      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(139,92,246,0.2)', borderTopColor: 'var(--accent-purple)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+      </div>
+    );
+  }
   return <>{children}</>;
 };
 
@@ -49,11 +65,7 @@ const AppContent: React.FC<{ isDark: boolean; onToggleTheme: () => void }> = ({ 
   }, [token, loadAll]);
 
   if (location.pathname === '/login') {
-    return (
-      <Routes>
-        <Route path="/login" element={token ? <Navigate to="/" replace /> : <LoginPage />} />
-      </Routes>
-    );
+    return <Navigate to="/" replace />;
   }
 
   return (
