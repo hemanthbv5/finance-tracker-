@@ -2,10 +2,8 @@ import axios from 'axios';
 
 // Dynamically use the current hostname so mobile devices on the network can connect
 const hostname = window.location.hostname;
-// If the app is served on 5173 (Vite dev), point to 3001. If served on 3001 (production), point to itself.
-const API_BASE = window.location.port === '5173' 
-  ? `http://${hostname}:3001/api` 
-  : `http://${hostname}:${window.location.port}/api`;
+// The backend server always runs on port 3001 during development and production
+const API_BASE = `http://${hostname}:3001/api`;
 
 const client = axios.create({
   baseURL: API_BASE,
