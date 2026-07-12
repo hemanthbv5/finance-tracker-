@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
-import { Eye, EyeOff, TrendingUp, Shield, Target } from 'lucide-react';
+import { Eye, EyeOff, TrendingUp, Shield, Target, Lock } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -200,22 +200,38 @@ const LoginPage: React.FC = () => {
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary btn-lg"
-              style={{ width: '100%', marginTop: '8px' }}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.8s linear infinite', display: 'inline-block' }} />
-                  {mode === 'login' ? 'Signing in...' : 'Creating account...'}
-                </span>
-              ) : (
-                mode === 'login' ? '🔐 Sign In' : '🚀 Create Account'
+              <button 
+                type="submit" 
+                className="btn btn-primary" 
+                style={{ width: '100%', padding: '12px', fontSize: '15px' }}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                    <div style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                    Authenticating...
+                  </div>
+                ) : (
+                  <>
+                    <Lock size={18} style={{ color: '#fbbf24' }} />
+                    {mode === 'login' ? 'Sign In' : 'Create Account'}
+                  </>
+                )}
+              </button>
+
+              {/* Instant Developer Login Button */}
+              {mode === 'login' && (
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  style={{ width: '100%', padding: '12px', fontSize: '14px', marginTop: '12px', background: 'rgba(139, 92, 246, 0.1)', color: 'var(--accent-purple-light)' }}
+                  onClick={() => login('hemanth@gmail.com', 'Harshitha@6313')}
+                  disabled={isLoading}
+                >
+                  🚀 Quick Login as Hemanth
+                </button>
               )}
-            </button>
-          </form>
+            </form>
 
           <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px', color: 'var(--text-secondary)' }}>
             {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
