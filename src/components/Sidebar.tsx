@@ -81,11 +81,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           })}
         </nav>
 
-        <div className="sidebar-user">
+        <NavLink to="/settings" className="sidebar-user" onClick={onClose} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
           <div className="user-avatar">
             {(useAuthStore(s => s.user?.name) || profile.name).charAt(0).toUpperCase()}
           </div>
-          <div className="user-info">
+          <div className="user-info" style={{ flex: 1, minWidth: 0, marginLeft: '12px' }}>
             <div className="user-name" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {useAuthStore(s => s.user?.name) || profile.name}
             </div>
@@ -94,7 +94,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
           <ChevronRight size={14} style={{ color: 'var(--text-muted)' }} />
-        </div>
+        </NavLink>
       </aside>
     </>
   );
