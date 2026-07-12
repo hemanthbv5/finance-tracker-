@@ -32,7 +32,13 @@ export const useAuthStore = create<AuthState>()(
           localStorage.setItem('fintrack_user', JSON.stringify(user));
           set({ token, user, isLoading: false });
         } catch (err: any) {
-          const message = err.response?.data?.message || 'Login failed';
+          console.error("Auth error details:", err);
+          let message = 'Login failed';
+          if (err.response?.data?.message) {
+            message = err.response.data.message;
+          } else if (err.message) {
+            message = `Network Error: ${err.message}`;
+          }
           set({ error: message, isLoading: false });
           throw new Error(message);
         }
@@ -46,7 +52,13 @@ export const useAuthStore = create<AuthState>()(
           localStorage.setItem('fintrack_user', JSON.stringify(user));
           set({ token, user, isLoading: false });
         } catch (err: any) {
-          const message = err.response?.data?.message || 'Registration failed';
+          console.error("Auth error details:", err);
+          let message = 'Registration failed';
+          if (err.response?.data?.message) {
+            message = err.response.data.message;
+          } else if (err.message) {
+            message = `Network Error: ${err.message}`;
+          }
           set({ error: message, isLoading: false });
           throw new Error(message);
         }
